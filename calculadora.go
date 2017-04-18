@@ -135,6 +135,7 @@ func construir() {
 }
 
 func calcolo( )   {
+	//fazer calc de val
 	ans := soma(1, 2)
 	fmt.Printf("%2d", ans)
 }
