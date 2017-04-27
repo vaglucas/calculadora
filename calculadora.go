@@ -5,6 +5,8 @@ import (
 	"github.com/mattn/go-gtk/gtk"
 	"os"
 	"strings"
+	"regexp"
+
 )
 
 func main() {
@@ -148,7 +150,6 @@ func calcolo(a string)   {
 		if isOperator(n){
 			switch n{
 				case "+":
-
 				fmt.Println("test")
 				break;
 				case "-":
@@ -158,7 +159,7 @@ func calcolo(a string)   {
 
 				break;
 				case "/":
-					
+
 				break;
 			}
 		}	
@@ -182,8 +183,7 @@ func divisao(a float64, b float64) float64 {
 }
 
 func isOperator(a string) bool {
-	if(a == "+" || a == "-" ||a == "*"||a == "/"){
-		return true
-	}
-	return false
+	var validID = regexp.MustCompile(`[+-/*]`)
+	return validID.MatchString(a)
+	
 }
