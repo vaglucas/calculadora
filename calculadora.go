@@ -6,6 +6,7 @@ import (
 	"os"
 	"strings"
 	"regexp"
+	"strconv"
 
 )
 
@@ -63,7 +64,7 @@ func construir() {
 			}
 			btn := gtk.NewButtonWithLabel(fmt.Sprintf(format, k))
 			btn.Clicked(func() {
-				fmt.Println("soma =", entry.GetText())
+				fmt.Println("expressao =", entry.GetText())
 				entry.SetText(entry.GetText() + "" + btn.GetLabel())
 			})
 			tableNumber.Attach(btn, x, x+1, y, y+1, gtk.FILL, gtk.FILL, 15, 15)
@@ -74,27 +75,22 @@ func construir() {
 	soma := gtk.NewButtonWithLabel("+")
 	//soma.set
 	soma.Clicked(func() {
-		fmt.Println("soma =", entry.GetText())
-		entry.SetText(entry.GetText() + " " + soma.GetLabel() + " ")
+ 		entry.SetText(entry.GetText() + " " + soma.GetLabel() + " ")
 	})
 	sub := gtk.NewButtonWithLabel("-")
 	//soma.set
 	sub.Clicked(func() {
-		fmt.Println("subtracao =", entry.GetText())
-		entry.SetText(entry.GetText() + " " + sub.GetLabel() + " ")
+ 		entry.SetText(entry.GetText() + " " + sub.GetLabel() + " ")
 	})
 	multi := gtk.NewButtonWithLabel("x")
 	//soma.set
 	multi.Clicked(func() {
-		fmt.Println("multiplicacao=", entry.GetText())
-		entry.SetText(entry.GetText() + " " + multi.GetLabel() + " ")
+ 		entry.SetText(entry.GetText() + " " + multi.GetLabel() + " ")
 	})
 	divs := gtk.NewButtonWithLabel("/")
 	//soma.set
 	divs.Clicked(func() {
-
-		fmt.Println("divisao =", entry.GetText())
-		entry.SetText(entry.GetText() + " " + divs.GetLabel() + " ")
+ 		entry.SetText(entry.GetText() + " " + divs.GetLabel() + " ")
 	})
 	result := gtk.NewButtonWithLabel("=")
 	//soma.set
@@ -105,8 +101,7 @@ func construir() {
 	backspace := gtk.NewButtonWithLabel("<-")
 	//soma.set
 	backspace.Clicked(func() {
-		fmt.Println("backspace =", entry.GetText())
-		s := "" + entry.GetText()
+ 		s := "" + entry.GetText()
 		lastBin := len(s)
 		if lastBin > 0 {
 			s = s[0 : lastBin-1]
@@ -150,7 +145,12 @@ func calcolo(a string)   {
 		if isOperator(n){
 			switch n{
 				case "+":
-				fmt.Println("test")
+					a,_   := strconv.ParseFloat((s[i-1]), 64)
+					b,_  := strconv.ParseFloat((s[i+1]), 64) 
+					fmt.Println("==================")
+					c  := soma(a,b)
+					//remover os tres valore uzads e substituir pelo resultado c
+					fmt.Println(c)
 				break;
 				case "-":
 
@@ -167,7 +167,7 @@ func calcolo(a string)   {
 	//ans := soma(1, 2)
 	fmt.Println("%s",a)
 }
-func soma(a int, b int) int {
+func soma(a float64, b float64) float64 {
 	return (a + b)
 }
 
