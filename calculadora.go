@@ -145,8 +145,22 @@ func calcolo(a string)   {
 	for i,n := range s{
 		fmt.Print(n+",")	
 		fmt.Println(i)
-		if(isOperator(n)){
-			
+		if isOperator(n){
+			switch n{
+				case "+":
+
+				fmt.Println("test")
+				break;
+				case "-":
+
+				break;
+				case "*":
+
+				break;
+				case "/":
+					
+				break;
+			}
 		}	
 	}
 	//ans := soma(1, 2)
