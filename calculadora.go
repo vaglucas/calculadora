@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/mattn/go-gtk/gtk"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -89,6 +90,7 @@ func construir() {
 	divs := gtk.NewButtonWithLabel("/")
 	//soma.set
 	divs.Clicked(func() {
+
 		fmt.Println("divisao =", entry.GetText())
 		entry.SetText(entry.GetText() + " " + divs.GetLabel() + " ")
 	})
@@ -96,7 +98,7 @@ func construir() {
 	//soma.set
 	result.Clicked(func() {
 		//function cacola
-		calcolo( )
+		calcolo( entry.GetText())
 	})
 	backspace := gtk.NewButtonWithLabel("<-")
 	//soma.set
@@ -134,10 +136,21 @@ func construir() {
 
 }
 
-func calcolo( )   {
-	//fazer calc de val
-	ans := soma(1, 2)
-	fmt.Printf("%2d", ans)
+func calcolo(a string)   {
+
+	fmt.Println("%s",a)
+	fmt.Println(strings.Split(a,"+"))
+	var s []string = strings.Split(a," ")
+	//var size int = len(s)
+	for i,n := range s{
+		fmt.Print(n+",")	
+		fmt.Println(i)
+		if(isOperator(n)){
+			
+		}	
+	}
+	//ans := soma(1, 2)
+	fmt.Println("%s",a)
 }
 func soma(a int, b int) int {
 	return (a + b)
@@ -152,4 +165,11 @@ func multiplicacao(a float64, b float64) float64 {
 
 func divisao(a float64, b float64) float64 {
 	return a / b
+}
+
+func isOperator(a string) bool {
+	if(a == "+" || a == "-" ||a == "*"||a == "/"){
+		return true
+	}
+	return false
 }
