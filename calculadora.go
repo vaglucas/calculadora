@@ -96,7 +96,8 @@ func construir() {
 	//soma.set
 	result.Clicked(func() {
 		//function cacola
-		calcolo( entry.GetText())
+		retorno := calcolo( entry.GetText())
+		entry.SetText(retorno)
 	})
 	backspace := gtk.NewButtonWithLabel("<-")
 	//soma.set
@@ -133,24 +134,28 @@ func construir() {
 
 }
 
-func calcolo(a string)   {
+func calcolo(a string)  string {
 
 	fmt.Println("%s",a)
 	fmt.Println(strings.Split(a,"+"))
 	var s []string = strings.Split(a," ")
 	//var size int = len(s)
+	var rr string = ""
 	for i,n := range s{
 		fmt.Print(n+",")	
 		fmt.Println(i)
 		if isOperator(n){
 			switch n{
 				case "+":
-					a,_   := strconv.ParseFloat((s[i-1]), 64)
+					a,_  := strconv.ParseFloat((s[i-1]), 64)
 					b,_  := strconv.ParseFloat((s[i+1]), 64) 
 					fmt.Println("==================")
 					c  := soma(a,b)
 					//remover os tres valore uzads e substituir pelo resultado c
+					s[i+1] = strconv.FormatFloat(c, 'f', 2, 64)
+ 					s = s[i+1 : len(s)]
 					fmt.Println(c)
+					rr = strconv.FormatFloat(c, 'f', 2, 64)
 				break;
 				case "-":
 
@@ -165,7 +170,8 @@ func calcolo(a string)   {
 		}	
 	}
 	//ans := soma(1, 2)
-	fmt.Println("%s",a)
+	//fmt.Println("%s",a)
+	return rr
 }
 func soma(a float64, b float64) float64 {
 	return (a + b)
