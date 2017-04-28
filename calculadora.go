@@ -142,19 +142,32 @@ func calcolo(a string)  string {
 	//var size int = len(s)
 	var rr string = ""
 	for i,n := range s{
-		fmt.Print(n+",")	
+		fmt.Print("FOR: "+n+",")	
 		fmt.Println(i)
 		if isOperator(n){
 			switch n{
 				case "+":
+					fmt.Print("SOMA: ")
+					fmt.Println(s)	
+						
 					a,_  := strconv.ParseFloat((s[i-1]), 64)
 					b,_  := strconv.ParseFloat((s[i+1]), 64) 
-					fmt.Println("==================")
+					
 					c  := soma(a,b)
 					//remover os tres valore uzads e substituir pelo resultado c
-					s[i+1] = strconv.FormatFloat(c, 'f', 2, 64)
- 					s = s[i+1 : len(s)]
+ 					if len(s) > 2{
+ 							fmt.Print("IF: ")
+ 							fmt.Println(s)
+ 							s[i+1] = strconv.FormatFloat(c, 'f', 2, 64) 
+					}else{
+						fmt.Print("ELSE: ")
+						s[i+1] = strconv.FormatFloat(c, 'f', 2, 64)
+
+					}
+ 					fmt.Print("RESULT: ")
 					fmt.Println(c)
+					fmt.Print("VECTOR: ")
+					fmt.Println(s)
 					rr = strconv.FormatFloat(c, 'f', 2, 64)
 				break;
 				case "-":
