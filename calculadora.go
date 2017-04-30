@@ -34,7 +34,7 @@ func construir() {
 	frame2.Add(framebox2)
 
 	vpaned.Pack1(frame1, false, false)
-	vpaned.Pack2(frame2, false, false)
+	vpaned.Pack2(frame2, true, false)
 
 	entry := gtk.NewEntry()
 	entry.SetText("")
@@ -70,7 +70,7 @@ func construir() {
 				fmt.Println("expressao =", entry.GetText())
 				entry.SetText(entry.GetText() + "" + btn.GetLabel())
 			})
-			tableNumber.Attach(btn, x, x+1, y, y+1, gtk.FILL, gtk.FILL, 15, 15)
+			tableNumber.Attach(btn, x, x+1, y, y+1, gtk.FILL, gtk.FILL, 25, 15)
 		}
 	}
 
@@ -125,12 +125,12 @@ func construir() {
 
 	swin.AddWithViewPort(tableNumber)
 
-	framebox2.PackStart(buttons, false, false, 0)
+	framebox2.PackStart(buttons, false, true, 2)
 	framebox2.Add(swin)
 	vbox.PackStart(framebox1, false, false, 0)
-	vbox.PackStart(framebox2, false, false, 0)
+	vbox.PackStart(framebox2, true, false, 0)
 	window.Add(vbox)
-	window.SetDefaultSize(300, 650)
+	window.SetDefaultSize(300, 450)
 	window.ShowAll()
 
 	gtk.Main()

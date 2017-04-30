@@ -1,21 +1,22 @@
-<h3>Calculadora em Golang</h3>
+<h2>Calculadora em Golang</h2>
 <p class="autoria">
     Auuthor: <a title="Vagner Lucas Gomes" target="_blank" href="https://www.instagram.com/vagnerlucasgomes/">Vagner Lucas</a>
 </p>
 
-<p class="dados">
+<ul class="dados">
 Graphic interface
-</p><p class="dados">
+</li><li class="dados">
 wget https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz
-</p><p class="dados">
+</li><li class="dados">
 sudo tar -xvf go1.7.4.linux-amd64.tar.gz
-</p><p class="dados">
+</li><li class="dados">
 sudo mv go /usr/local
-</p><p class="dados">
+</li><li class="dados">
 export GOROOT=/usr/local/go
-</p><p class="dados">
+</li><li class="dados">
 export GOPATH=$HOME/projects/go_projects
-</p><p class="dados">
+</li><li class="dados">
 go install github.com/mattn/go-gtk/gtk
-</p>
+</li>
+</ul>
 
