@@ -7,7 +7,7 @@ import (
 	"strings"
 	"regexp"
 	"strconv"
-
+	//"golang.org/x/mobile/event/key"
 )
 
 func main() {
@@ -46,6 +46,7 @@ func construir() {
 		for x := uint(0); x < 3; x++ {
 			var format = "%01d"
 			k := uint(0)
+			 
 			if y == 0 {
 				k = (x + 1)
 			} else if y == 1 {
@@ -62,7 +63,9 @@ func construir() {
 				}
 
 			}
-			btn := gtk.NewButtonWithLabel(fmt.Sprintf(format, k))
+		
+			btn := gtk.NewButtonWithLabel(fmt.Sprintf(format, k))		
+			
 			btn.Clicked(func() {
 				fmt.Println("expressao =", entry.GetText())
 				entry.SetText(entry.GetText() + "" + btn.GetLabel())
@@ -82,7 +85,7 @@ func construir() {
 	sub.Clicked(func() {
  		entry.SetText(entry.GetText() + " " + sub.GetLabel() + " ")
 	})
-	multi := gtk.NewButtonWithLabel("x")
+	multi := gtk.NewButtonWithLabel("*")
 	//soma.set
 	multi.Clicked(func() {
  		entry.SetText(entry.GetText() + " " + multi.GetLabel() + " ")
@@ -146,37 +149,62 @@ func calcolo(a string)  string {
 		fmt.Println(i)
 		if isOperator(n){
 			switch n{
-				case "+":
-					fmt.Print("SOMA: ")
-					fmt.Println(s)	
-						
+				case "+": 
 					a,_  := strconv.ParseFloat((s[i-1]), 64)
 					b,_  := strconv.ParseFloat((s[i+1]), 64) 
 					
 					c  := soma(a,b)
 					//remover os tres valore uzads e substituir pelo resultado c
- 					if len(s) > 2{
- 							fmt.Print("IF: ")
- 							fmt.Println(s)
- 							s[i+1] = strconv.FormatFloat(c, 'f', 2, 64) 
+ 					if len(s) > 2{ 
+ 						s[i+1] = strconv.FormatFloat(c, 'f', 2, 64) 
 					}else{
-						fmt.Print("ELSE: ")
-						s[i+1] = strconv.FormatFloat(c, 'f', 2, 64)
+ 						s[i+1] = strconv.FormatFloat(c, 'f', 2, 64)
 
-					}
- 					fmt.Print("RESULT: ")
-					fmt.Println(c)
-					fmt.Print("VECTOR: ")
-					fmt.Println(s)
+					} 
 					rr = strconv.FormatFloat(c, 'f', 2, 64)
 				break;
 				case "-":
+						a,_  := strconv.ParseFloat((s[i-1]), 64)
+					b,_  := strconv.ParseFloat((s[i+1]), 64) 
+					
+					c  := subtracao(a,b)
+					//remover os tres valore uzads e substituir pelo resultado c
+ 					if len(s) > 2{ 
+ 						s[i+1] = strconv.FormatFloat(c, 'f', 2, 64) 
+					}else{
+ 						s[i+1] = strconv.FormatFloat(c, 'f', 2, 64)
 
+					} 
+					rr = strconv.FormatFloat(c, 'f', 2, 64)
 				break;
-				case "*":
+				case "*":	
+					a,_  := strconv.ParseFloat((s[i-1]), 64)
+					b,_  := strconv.ParseFloat((s[i+1]), 64) 
+					
+					c  := multiplicacao(a,b)
+					//remover os tres valore uzads e substituir pelo resultado c
+ 					if len(s) > 2{ 
+ 						s[i+1] = strconv.FormatFloat(c, 'f', 2, 64) 
+					}else{
+ 						s[i+1] = strconv.FormatFloat(c, 'f', 2, 64)
+
+					} 
+					rr = strconv.FormatFloat(c, 'f', 2, 64)
 
 				break;
 				case "/":
+					a,_  := strconv.ParseFloat((s[i-1]), 64)
+					b,_  := strconv.ParseFloat((s[i+1]), 64) 
+					
+					c  := divisao(a,b)
+					//remover os tres valore uzads e substituir pelo resultado c
+ 					if len(s) > 2{ 
+ 						s[i+1] = strconv.FormatFloat(c, 'f', 2, 64) 
+					}else{
+ 						s[i+1] = strconv.FormatFloat(c, 'f', 2, 64)
+
+					} 
+					rr = strconv.FormatFloat(c, 'f', 2, 64)
 
 				break;
 			}
