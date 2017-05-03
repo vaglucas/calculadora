@@ -7,6 +7,9 @@ import (
 	"strings"
 	"regexp"
 	"strconv"
+	 "math"
+
+	//op "../lib/operadores"
 	//"golang.org/x/mobile/event/key"
 )
 
@@ -108,7 +111,7 @@ func construir() {
  		s := "" + entry.GetText()
 		lastBin := len(s)
 		if lastBin > 0 {
-			s = s[0 : lastBin-1]
+			s = s[0 : lastBin-2]
 			fmt.Println(s)
 			entry.SetText(s)
 		}
@@ -137,6 +140,8 @@ func construir() {
 
 }
 
+
+
 func calcolo(a string)  string {
 
 	fmt.Println("%s",a)
@@ -154,6 +159,7 @@ func calcolo(a string)  string {
 					b,_  := strconv.ParseFloat((s[i+1]), 64) 
 					
 					c  := soma(a,b)
+
 					//remover os tres valore uzads e substituir pelo resultado c
  					if len(s) > 2{ 
  						s[i+1] = strconv.FormatFloat(c, 'f', 2, 64) 
@@ -198,13 +204,18 @@ func calcolo(a string)  string {
 					
 					c  := divisao(a,b)
 					//remover os tres valore uzads e substituir pelo resultado c
- 					if len(s) > 2{ 
- 						s[i+1] = strconv.FormatFloat(c, 'f', 2, 64) 
+					if c == 0{
+						rr = "MATH ERROR: /0"
 					}else{
- 						s[i+1] = strconv.FormatFloat(c, 'f', 2, 64)
+	 					if len(s) > 2{ 
+	 						s[i+1] = strconv.FormatFloat(c, 'f', 2, 64) 
+						}else{
+	 						s[i+1] = strconv.FormatFloat(c, 'f', 2, 64)
 
-					} 
-					rr = strconv.FormatFloat(c, 'f', 2, 64)
+						} 
+						rr = strconv.FormatFloat(c, 'f', 2, 64)
+
+					}
 
 				break;
 			}
@@ -226,11 +237,29 @@ func multiplicacao(a float64, b float64) float64 {
 }
 
 func divisao(a float64, b float64) float64 {
-	return a / b
+
+	if b == 0 {
+		fmt.Println("OOO")
+		return 0
+	}else{
+		return a / b
+	}
 }
 
 func isOperator(a string) bool {
 	var validID = regexp.MustCompile(`[+-/*]`)
 	return validID.MatchString(a)
 	
+}
+
+func potencia2(a float64) float64{
+	return a*a
+}
+
+func raiz(a float64) float64{
+	return Sqrt(a)
+}
+
+func tan(a float64) float64{
+	return Tan(a)
 }
